@@ -1,4 +1,4 @@
-const luhnNumberValidation = (number) => {
+const validateLuhnNumber = (number) => {
   const numbers = number.split('').reverse();
   let sum = 0;
   numbers.forEach((item, index) => {
@@ -22,13 +22,11 @@ const generateLuhnNumber = (length) => {
     return string;
   }
   const num = generateRandomNumberString();
-  if (luhnNumberValidation(num)) return num;
+  if (validateLuhnNumber(num)) return num;
   else return generateLuhnNumber(length);
 }
 
-(() => {
-  const luhnNumber = generateLuhnNumber(50);
-  // '4847352989263094'
-  console.log({isValid: luhnNumberValidation(luhnNumber), value: luhnNumber});
-  process.exit();
-})();
+module.exports = {
+  generateLuhnNumber,
+  validateLuhnNumber,
+}
